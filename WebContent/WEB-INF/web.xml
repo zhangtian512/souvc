@@ -28,13 +28,19 @@
         <!-- 配置获取access_token所需参数appid和appsecret -->
         <init-param>
             <param-name>appid</param-name>
-            <param-value>appid</param-value>
+            <param-value>wx0c521940064c1f5f</param-value>
         </init-param>
         <init-param>
             <param-name>appsecret</param-name>
-            <param-value>appsecret</param-value>
+            <param-value>0fdc248fd764ad1c963b72b312eb335d</param-value>
         </init-param>
         <load-on-startup>0</load-on-startup>
+    </servlet>
+    
+    <servlet>
+    	<servlet-name>MenuInitServlet</servlet-name>
+    	<servlet-class>com.souvc.weixin.servlet.MenuInitServlet</servlet-class>
+    	<load-on-startup>1</load-on-startup>
     </servlet>
     
     <context-param>

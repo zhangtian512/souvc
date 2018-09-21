@@ -57,7 +57,7 @@ public class TokenUtil {
             pst.setTimestamp(3, new java.sql.Timestamp(now));  
             pst.execute();  
         } catch (SQLException ex) {  
-            System.out.println("数据库操作异常：" + ex.getMessage());  
+            System.out.println("MySql:数据库操作异常" + ex.getMessage());  
         } finally {   
             DBUtility.closeConnection(conn);
         }
