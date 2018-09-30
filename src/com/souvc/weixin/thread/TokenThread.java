@@ -17,7 +17,7 @@ public class TokenThread implements Runnable {
 
     public void run() {
     	
-    	log.info("Enter TokenThread run");
+    	//log.info("Enter TokenThread run");
     	Thread.currentThread().setName("Access_Token_Obtain_Task");
         while (true) {
             try {
@@ -25,11 +25,10 @@ public class TokenThread implements Runnable {
                 if (null != accessToken) {
                     //调用存储到数据库
                     TokenUtil.saveToken(accessToken);
-                    log.info("获取access_token成功，pidname:{} pidno:{} 有效时长{}秒 token:{} ",
+                    log.info("获取access_token成功，Pidname:{},Pidno:{},有效时长{}秒 ",
                     		Thread.currentThread().getName(),
                     		Thread.currentThread().getId(),
-                    		accessToken.getExpiresIn(),
-                    		accessToken.getAccessToken());
+                    		accessToken.getExpiresIn());
                     // 休眠7000秒
                     Thread.sleep((accessToken.getExpiresIn() - 200)*1000);
                 } else {

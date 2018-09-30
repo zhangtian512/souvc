@@ -7,6 +7,7 @@ import com.souvc.weixin.menu.Button;
 import com.souvc.weixin.menu.CommonButton;
 import com.souvc.weixin.menu.ComplexButton;
 import com.souvc.weixin.menu.Menu;
+import com.souvc.weixin.menu.ViewButton;
 import com.souvc.weixin.pojo.Token;
 import com.souvc.weixin.util.CommonUtil;
 
@@ -15,7 +16,7 @@ public class MenuManager {
 
     public static void main(String[] args) {
     	
-    	log.info("Enter MenuManager main");
+    	//log.info("Enter MenuManager main");
         // 第三方用户唯一凭证
         String appId = "wx0c521940064c1f5f";
         // 第三方用户唯一凭证密钥
@@ -45,7 +46,7 @@ public class MenuManager {
      * @return
      */
     private static Menu getMenu() {
-        CommonButton btn11 = new CommonButton();
+        /*CommonButton btn11 = new CommonButton();
         btn11.setName("天气预报");
         btn11.setType("click");
         btn11.setKey("11");
@@ -88,20 +89,20 @@ public class MenuManager {
         CommonButton btn25 = new CommonButton();
         btn25.setName("聊天唠嗑");
         btn25.setType("click");
-        btn25.setKey("25");
+        btn25.setKey("25");*/
 
         CommonButton btn31 = new CommonButton();
-        btn31.setName("Q友圈");
+        btn31.setName("使用说明");
         btn31.setType("click");
         btn31.setKey("31");
 
         CommonButton btn32 = new CommonButton();
-        btn32.setName("电影排行榜");
+        btn32.setName("联系我");
         btn32.setType("click");
         btn32.setKey("32");
 
         CommonButton btn33 = new CommonButton();
-        btn33.setName("幽默笑话");
+        btn33.setName("意见与建议");
         btn33.setType("click");
         btn33.setKey("33");
 
@@ -110,19 +111,23 @@ public class MenuManager {
          * 微信：  mainBtn1,mainBtn2,mainBtn3底部的三个一级菜单。
          */
         
-        ComplexButton mainBtn1 = new ComplexButton();
-        mainBtn1.setName("生活助手");
+        ViewButton mainBtn1 = new ViewButton();
+        mainBtn1.setName("我是司机");
+        mainBtn1.setType("view");
+        mainBtn1.setUrl("https://www.baidu.com/");
         //一级下有4个子菜单
-        mainBtn1.setSub_button(new CommonButton[] { btn11, btn12, btn13, btn14 });
+        //mainBtn1.setSub_button(new CommonButton[] { btn11, btn12, btn13, btn14 });
 
         
-        ComplexButton mainBtn2 = new ComplexButton();
-        mainBtn2.setName("休闲驿站");
-        mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
+        ViewButton mainBtn2 = new ViewButton();
+        mainBtn2.setName("我是乘客");
+        mainBtn2.setType("view");
+        mainBtn2.setUrl("https://www.baidu.com/");
+        //mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
 
         
         ComplexButton mainBtn3 = new ComplexButton();
-        mainBtn3.setName("更多体验");
+        mainBtn3.setName("更多服务");
         mainBtn3.setSub_button(new CommonButton[] { btn31, btn32, btn33 });
 
         

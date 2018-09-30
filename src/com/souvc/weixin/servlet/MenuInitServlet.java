@@ -18,7 +18,7 @@ public class MenuInitServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		
-		log.info("Enter MenuInitServlet init");
+		//log.info("Enter MenuInitServlet init");
 		try {
 			Class clz = Class.forName("com.souvc.weixin.main.MenuManager");
 			Object obj = clz.newInstance();

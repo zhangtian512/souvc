@@ -20,8 +20,8 @@ public class InitServlet extends HttpServlet {
         TokenThread.appid = getInitParameter("appid");
         TokenThread.appsecret = getInitParameter("appsecret");
 
-        log.info("weixin api appid:{}", TokenThread.appid);
-        log.info("weixin api appsecret:{}", TokenThread.appsecret);
+        //log.info("weixin api appid:{}", TokenThread.appid);
+        //log.info("weixin api appsecret:{}", TokenThread.appsecret);
 
         // 未配置appid、appsecret时给出提示
         if ("".equals(TokenThread.appid) || "".equals(TokenThread.appsecret)) {

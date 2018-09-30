@@ -57,6 +57,7 @@ public class CommonUtil {
         String url = menu_create_url.replace("ACCESS_TOKEN", accessToken);
         // 将菜单对象转换成json字符串
         String jsonMenu = JSONObject.fromObject(menu).toString();
+        log.debug(jsonMenu);
         // 调用接口创建菜单
         JSONObject jsonObject = httpsRequest(url, "POST", jsonMenu);
         if (null != jsonObject) {

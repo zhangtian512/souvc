@@ -56,6 +56,8 @@ public class MessageUtil {
     public static final String EVENT_TYPE_LOCATION = "LOCATION";
     // 事件类型：CLICK(自定义菜单)
     public static final String EVENT_TYPE_CLICK = "CLICK";
+ // 事件类型：CLICK(自定义菜单)
+    public static final String EVENT_TYPE_VIEW = "VIEW";
 
     // 响应消息类型：文本
     public static final String RESP_MESSAGE_TYPE_TEXT = "text";
