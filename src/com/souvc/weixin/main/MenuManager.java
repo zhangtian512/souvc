@@ -114,7 +114,7 @@ public class MenuManager {
         ViewButton mainBtn1 = new ViewButton();
         mainBtn1.setName("我是司机");
         mainBtn1.setType("view");
-        mainBtn1.setUrl("https://www.baidu.com/");
+        mainBtn1.setUrl("http://47.106.206.255/CQ/StayHotel/");
         //一级下有4个子菜单
         //mainBtn1.setSub_button(new CommonButton[] { btn11, btn12, btn13, btn14 });
 
@@ -122,7 +122,7 @@ public class MenuManager {
         ViewButton mainBtn2 = new ViewButton();
         mainBtn2.setName("我是乘客");
         mainBtn2.setType("view");
-        mainBtn2.setUrl("https://www.baidu.com/");
+        mainBtn2.setUrl("http://47.106.206.255/CQ/StayHotel/");
         //mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
 
         
