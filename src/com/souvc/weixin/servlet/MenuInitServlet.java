@@ -3,8 +3,6 @@ package com.souvc.weixin.servlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import sun.font.StrikeCache;
-
 import java.lang.reflect.Method;
 
 import javax.servlet.ServletException;
