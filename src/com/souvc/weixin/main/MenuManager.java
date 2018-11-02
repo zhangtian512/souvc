@@ -122,7 +122,7 @@ public class MenuManager {
         ViewButton mainBtn2 = new ViewButton();
         mainBtn2.setName("ÎÒÊÇ³Ë¿Í");
         mainBtn2.setType("view");
-        mainBtn2.setUrl("http://47.106.206.255/sfc/passengerPage");
+        mainBtn2.setUrl("http://47.106.206.255/sfc/PassengerPage");
         //mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
 
         
