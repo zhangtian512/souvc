@@ -44,6 +44,9 @@ public class CommonUtil {
     public static String user_info_get_url = 
     		"https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
     
+    //跳转页面获取用户openid
+    public static String snsapi_base_request_url = 
+    		"https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REQ_URL&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
     /**
      * 创建菜单
      * 
@@ -210,5 +213,9 @@ public class CommonUtil {
         }
         
         return weixinUserInfo;
+    }
+    
+    public static String GenSnsapiBaseUrl(String appid,String req_url){
+    	return snsapi_base_request_url.replace("APPID", appid).replace("REQ_URL", req_url);
     }
 }

@@ -61,7 +61,12 @@ public class CoreServlet extends HttpServlet {
 
         // 调用核心业务类接收消息、处理消息
         String respXml = CoreService.processRequest(request);
-
+        if(respXml.equals("error")){
+        	System.out.println("处理请求返回错误");
+        	return;
+        }
+        System.out.println(respXml);
+        
         // 响应消息
         PrintWriter out = response.getWriter();
         out.print(respXml);

@@ -1,5 +1,8 @@
 package com.souvc.weixin.main;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,8 +13,12 @@ import com.souvc.weixin.menu.Menu;
 import com.souvc.weixin.menu.ViewButton;
 import com.souvc.weixin.pojo.Token;
 import com.souvc.weixin.util.CommonUtil;
+import com.thoughtworks.xstream.converters.reflection.SelfStreamingInstanceChecker;
 
 public class MenuManager {
+	
+	public final static String appid = "wx0c521940064c1f5f";
+	
 	private static Logger log = LoggerFactory.getLogger(MenuManager.class);
 
     public static void main(String[] args) {
@@ -46,50 +53,6 @@ public class MenuManager {
      * @return
      */
     private static Menu getMenu() {
-        /*CommonButton btn11 = new CommonButton();
-        btn11.setName("天气预报");
-        btn11.setType("click");
-        btn11.setKey("11");
-
-        CommonButton btn12 = new CommonButton();
-        btn12.setName("公交查询");
-        btn12.setType("click");
-        btn12.setKey("12");
-
-        CommonButton btn13 = new CommonButton();
-        btn13.setName("周边搜索");
-        btn13.setType("click");
-        btn13.setKey("13");
-
-        CommonButton btn14 = new CommonButton();
-        btn14.setName("历史上的今天");
-        btn14.setType("click");
-        btn14.setKey("14");
-
-        CommonButton btn21 = new CommonButton();
-        btn21.setName("歌曲点播");
-        btn21.setType("click");
-        btn21.setKey("21");
-
-        CommonButton btn22 = new CommonButton();
-        btn22.setName("经典游戏");
-        btn22.setType("click");
-        btn22.setKey("22");
-
-        CommonButton btn23 = new CommonButton();
-        btn23.setName("美女电台");
-        btn23.setType("click");
-        btn23.setKey("23");
-
-        CommonButton btn24 = new CommonButton();
-        btn24.setName("人脸识别");
-        btn24.setType("click");
-        btn24.setKey("24");
-
-        CommonButton btn25 = new CommonButton();
-        btn25.setName("聊天唠嗑");
-        btn25.setType("click");
-        btn25.setKey("25");*/
 
         CommonButton btn31 = new CommonButton();
         btn31.setName("使用说明");
@@ -110,18 +73,24 @@ public class MenuManager {
         /**
          * 微信：  mainBtn1,mainBtn2,mainBtn3底部的三个一级菜单。
          */
-        
+        //String url_driver = EncodeUrl("http://47.106.206.255/sfc/DriverPage");
+        //String final_url_driver = CommonUtil.GenSnsapiBaseUrl(appid,url_driver);
+        //System.out.println(final_url_driver);
         ViewButton mainBtn1 = new ViewButton();
         mainBtn1.setName("我是司机");
         mainBtn1.setType("view");
+        //mainBtn1.setUrl(final_url_driver);
         mainBtn1.setUrl("http://47.106.206.255/sfc/DriverPage");
         //一级下有4个子菜单
         //mainBtn1.setSub_button(new CommonButton[] { btn11, btn12, btn13, btn14 });
 
-        
+        //String url_pass = EncodeUrl("http://47.106.206.255/sfc/PassengerPage");
+        //String final_url_pass = CommonUtil.GenSnsapiBaseUrl(appid,url_pass);
+        //System.out.println(final_url_pass);
         ViewButton mainBtn2 = new ViewButton();
         mainBtn2.setName("我是乘客");
         mainBtn2.setType("view");
+        //mainBtn2.setUrl(final_url_pass);
         mainBtn2.setUrl("http://47.106.206.255/sfc/PassengerPage");
         //mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
 
@@ -138,5 +107,16 @@ public class MenuManager {
         menu.setButton(new Button[] { mainBtn1, mainBtn2, mainBtn3 });
 
         return menu;
+    }
+    
+    private static String EncodeUrl(String input){
+    	String url_pass = new String();
+    	try {
+    		url_pass = URLEncoder.encode(input,"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return url_pass;
     }
 }

@@ -37,11 +37,11 @@
         <load-on-startup>0</load-on-startup>
     </servlet>
     
-    <servlet>
+    <!-- <servlet>
     	<servlet-name>MenuInitServlet</servlet-name>
     	<servlet-class>com.souvc.weixin.servlet.MenuInitServlet</servlet-class>
     	<load-on-startup>1</load-on-startup>
-    </servlet>
+    </servlet> -->
     
     <context-param>
 	    <param-name>log4jConfigLocation</param-name>
