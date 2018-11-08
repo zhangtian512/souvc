@@ -7,18 +7,35 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.souvc.weixin.message.req.ImageMessage;
 import com.souvc.weixin.message.resp.Article;
 import com.souvc.weixin.message.resp.NewsMessage;
 import com.souvc.weixin.message.resp.TextMessage;
+import com.souvc.weixin.pojo.Material;
+import com.souvc.weixin.pojo.Token;
+import com.souvc.weixin.servlet.CoreServlet;
+import com.souvc.weixin.util.CommonUtil;
 import com.souvc.weixin.util.MessageUtil;
+import com.souvc.weixin.util.XMLNodeOpetation;
 
 public class CoreService {
+	
+	private static Logger log = LoggerFactory.getLogger(CoreService.class);
+	// 第三方用户唯一凭证
+    public static String appid = "wx0c521940064c1f5f";
+    // 第三方用户唯一凭证密钥
+    public static String appsecret = "0fdc248fd764ad1c963b72b312eb335d";
     /**
      * 处理微信发来的请求
      * @param request
      * @return xml
      */
     public static String processRequest(HttpServletRequest request) {
+    	
+    	log.info("enter processRequest");
         // xml格式的消息数据
         String respXml = null;
         // 默认返回的文本消息内容
@@ -48,6 +65,8 @@ public class CoreService {
             newsMessage.setCreateTime(new Date().getTime());
             newsMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
 
+            log.info("processRequest msgType:"+msgType);
+            log.info("processRequest msgContent:"+msgContent);
             switch (msgType) {
 			case MessageUtil.REQ_MESSAGE_TYPE_TEXT:
 				if(msgContent.equals("乘客")){
@@ -57,19 +76,13 @@ public class CoreService {
 					articles.setTitle("乘客页面说明");
 					articles.setDescription("请点击图片进入乘客页面:");
 					articles.setUrl("http://47.106.206.255/sfc/PassengerPage/"+fromUserName);
-					articles.setPicUrl("http://47.106.206.255/souvc/img/test.png");
-					
-					Article articles2 = new Article();
-					articles2.setTitle("跳转链接");
-					articles2.setDescription("请点击进入乘客页面:");
-					articles2.setUrl("http://47.106.206.255/sfc/PassengerPage/"+fromUserName);
-					
+					articles.setPicUrl("http://47.106.206.255/souvc/img/passenger.jpg");
+
 					ar_list.add(articles);
-					ar_list.add(articles2);
 					newsMessage.setArticles(ar_list);
 					newsMessage.setArticleCount(ar_list.size());
 					
-					respContent = "使用说明";
+					respContent = "图文消息";
 				}
 				else if(msgContent.equals("司机")){
 					List<Article> ar_list = new ArrayList<Article>();
@@ -78,28 +91,22 @@ public class CoreService {
 					articles.setTitle("司机页面");
 					articles.setDescription("请点击图片进入司机页面:");
 					articles.setUrl("http://47.106.206.255/sfc/DriverPage/"+fromUserName);
-					articles.setPicUrl("http://47.106.206.255/souvc/img/test1.png");
+					articles.setPicUrl("http://47.106.206.255/souvc/img/driver.jpg");
 					
 					ar_list.add(articles);
 					newsMessage.setArticles(ar_list);
 					newsMessage.setArticleCount(ar_list.size());
 					
-					respContent = "使用说明";
+					respContent = "图文消息";
 				}
 				else {
-					List<Article> ar_list = new ArrayList<Article>();
-					
-					Article articles = new Article();
-					articles.setTitle("使用说明");
-					articles.setDescription("请阅读使用说明");
-					articles.setPicUrl("http://47.106.206.255/souvc/img/test.png");
-					articles.setUrl("http://47.106.206.255/sfc/PassengerPage/"+fromUserName);
-					
-					ar_list.add(articles);
-					newsMessage.setArticles(ar_list);
-					newsMessage.setArticleCount(ar_list.size());
-					
-					respContent = "使用说明";
+					respContent = "本公众号意在为西安高新区上班的广大公众提供一个平台，"
+							+ "大家可以在这个平台上分享自己的上下班行程，"
+							+ "可约短期顺风车，可约长期顺风车。\n"
+							+ "由于资金有限，目前无法开通点击直接跳转至约车页面，"
+							+ "请您先点击菜单中的：\n"
+							+ "\"使用说明\"按钮\n"
+							+"获取使用攻略，等用户数量上升后为大家升级公众号";
 				}
 				
 				break;
@@ -126,25 +133,14 @@ public class CoreService {
                 String eventType = requestMap.get("Event");
 				switch (eventType) {
 				case MessageUtil.EVENT_TYPE_SUBSCRIBE:
-					System.out.println("关注者的openid："+fromUserName);
-						List<Article> ar_list = new ArrayList<Article>();
-						
-						Article articles = new Article();
-						articles.setTitle("高新区顺风车使用说明");
-						articles.setDescription("本公众号意在为西安高新区上班的广大公众提供一个平台，"
-								+ "大家可以在这个平台上分享自己的上下班行程，"
-								+ "可约短期顺风车，可约长期顺风车。\n"
-								+ "由于资金有限，目前无法开通点击直接跳转至约车页面，"
-								+ "大家可以在对话框输入\"乘客\"或者\"司机\"来获取链接，"
-								+ "点击进入即可发布行程联系预约顺风车，如果关注的人多了，"
-								+ "后续再为大家扩展更多方便大家使用的界面和功能。\n");
-						articles.setPicUrl("http://47.106.206.255/souvc/img/explain2.png");
-						
-						ar_list.add(articles);
-						newsMessage.setArticles(ar_list);
-						newsMessage.setArticleCount(ar_list.size());
-						
-						respContent = "使用说明";
+					log.info("关注者的openid："+fromUserName);
+					respContent = "本公众号意在为西安高新区上班的广大公众提供一个平台，"
+							+ "大家可以在这个平台上分享自己的上下班行程，"
+							+ "可约短期顺风车，可约长期顺风车。\n"
+							+ "由于资金有限，目前无法开通点击直接跳转至约车页面，"
+							+ "请您先点击菜单中的：\n"
+							+ "\"使用说明\"按钮\n"
+							+"获取使用攻略，等用户数量上升后为大家升级公众号";
 					break;
 				case MessageUtil.EVENT_TYPE_UNSUBSCRIBE:
 					// TODO 取消订阅后用户不会再收到公众账号发送的消息，因此不需要回复
@@ -174,9 +170,11 @@ public class CoreService {
 				break;
 			}
             
-            if(respContent.equals("使用说明")){
+            if(respContent.equals("图文消息")){
             	//将图文消息转换成XML
             	respXml = MessageUtil.messageToXml(newsMessage);
+            	respXml = XMLNodeOpetation.DelCDATAinXML(respXml, "CreateTime");
+            	respXml = XMLNodeOpetation.DelCDATAinXML(respXml, "ArticleCount");
             }
             else if(respContent.equals("未知的消息类型")){
             	return "error";

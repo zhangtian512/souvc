@@ -8,12 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.souvc.weixin.main.MenuManager;
 import com.souvc.weixin.service.CoreService;
 import com.souvc.weixin.util.SignUtil;
 
 
-public class CoreServlet extends HttpServlet {
 
+public class CoreServlet extends HttpServlet {
+	
+	private static Logger log = LoggerFactory.getLogger(CoreServlet.class);
     private static final long serialVersionUID = 4323197796926899691L;
 
     /**
@@ -38,11 +44,11 @@ public class CoreServlet extends HttpServlet {
         
         // 通过检验signature对请求进行校验，若校验成功则原样返回echostr，表示接入成功，否则接入失败
         if (SignUtil.checkSignature(signature, timestamp, nonce)) {
-        	System.out.println("Authentication success!");
-            out.print(echostr);
+        	log.info("Authentication success!");
+        	log.info(echostr);
         }
         else {
-        	System.out.println("Authentication failed!");
+        	log.error("Authentication failed!");
         }
         
         out.close();
@@ -62,10 +68,10 @@ public class CoreServlet extends HttpServlet {
         // 调用核心业务类接收消息、处理消息
         String respXml = CoreService.processRequest(request);
         if(respXml.equals("error")){
-        	System.out.println("处理请求返回错误");
+        	log.info("处理请求返回错误");
         	return;
         }
-        System.out.println(respXml);
+        log.info(respXml);
         
         // 响应消息
         PrintWriter out = response.getWriter();
