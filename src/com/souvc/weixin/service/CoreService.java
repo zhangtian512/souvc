@@ -69,30 +69,15 @@ public class CoreService {
             log.info("processRequest msgContent:"+msgContent);
             switch (msgType) {
 			case MessageUtil.REQ_MESSAGE_TYPE_TEXT:
-				if(msgContent.equals("乘客")){
+				if(msgContent.equals("发布")){
 					List<Article> ar_list = new ArrayList<Article>();
 					
 					Article articles = new Article();
-					articles.setTitle("乘客页面说明");
-					articles.setDescription("请点击图片进入乘客页面:");
-					articles.setUrl("http://47.106.206.255/sfc/PassengerPage/"+fromUserName);
+					articles.setTitle("主页");
+					articles.setDescription("请点击图片进入主页:");
+					articles.setUrl("http://47.106.206.255/sfc/MainPage/"+fromUserName);
 					articles.setPicUrl("http://47.106.206.255/souvc/img/passenger.jpg");
 
-					ar_list.add(articles);
-					newsMessage.setArticles(ar_list);
-					newsMessage.setArticleCount(ar_list.size());
-					
-					respContent = "图文消息";
-				}
-				else if(msgContent.equals("司机")){
-					List<Article> ar_list = new ArrayList<Article>();
-					
-					Article articles = new Article();
-					articles.setTitle("司机页面");
-					articles.setDescription("请点击图片进入司机页面:");
-					articles.setUrl("http://47.106.206.255/sfc/DriverPage/"+fromUserName);
-					articles.setPicUrl("http://47.106.206.255/souvc/img/driver.jpg");
-					
 					ar_list.add(articles);
 					newsMessage.setArticles(ar_list);
 					newsMessage.setArticleCount(ar_list.size());
@@ -106,7 +91,10 @@ public class CoreService {
 							+ "由于资金有限，目前无法开通点击直接跳转至约车页面，"
 							+ "请您先点击菜单中的：\n"
 							+ "\"使用说明\"按钮\n"
-							+"获取使用攻略，等用户数量上升后为大家升级公众号";
+							+"获取使用攻略,或直接在对话框输入\n"
+							+"\"发布\"\n"
+							+"来获取主页链接，然后再手机浏览器中打开即可"
+							+"等用户数量上升后为大家升级公众号";
 				}
 				
 				break;
@@ -140,7 +128,10 @@ public class CoreService {
 							+ "由于资金有限，目前无法开通点击直接跳转至约车页面，"
 							+ "请您先点击菜单中的：\n"
 							+ "\"使用说明\"按钮\n"
-							+"获取使用攻略，等用户数量上升后为大家升级公众号";
+							+"获取使用攻略,或直接在对话框输入\n"
+							+"\"发布\"\n"
+							+"来获取主页链接，然后再手机浏览器中打开即可"
+							+"等用户数量上升后为大家升级公众号";
 					break;
 				case MessageUtil.EVENT_TYPE_UNSUBSCRIBE:
 					// TODO 取消订阅后用户不会再收到公众账号发送的消息，因此不需要回复

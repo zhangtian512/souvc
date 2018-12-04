@@ -71,7 +71,7 @@ public class CoreServlet extends HttpServlet {
         	log.info("处理请求返回错误");
         	return;
         }
-        log.info(respXml);
+        //log.info(respXml);
         
         // 响应消息
         PrintWriter out = response.getWriter();

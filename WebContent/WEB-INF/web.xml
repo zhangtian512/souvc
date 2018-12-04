@@ -47,6 +47,10 @@
 	    <param-name>log4jConfigLocation</param-name>
 	    <param-value>classpath:log4j.properties</param-value>
 	</context-param>
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>souvc.root</param-value>
+	</context-param>
 	 
 	<!-- 利用spring来使用log4j -->
 	<listener>
