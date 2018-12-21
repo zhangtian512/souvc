@@ -75,7 +75,7 @@ public class CoreService {
 					Article articles = new Article();
 					articles.setTitle("主页");
 					articles.setDescription("请点击图片进入主页:");
-					articles.setUrl("http://47.106.206.255/sfc/MainPage/"+fromUserName);
+					articles.setUrl("http://47.106.206.255/e_sfc/user/MainPage");
 					articles.setPicUrl("http://47.106.206.255/souvc/img/passenger.jpg");
 
 					ar_list.add(articles);
@@ -98,22 +98,22 @@ public class CoreService {
 				
 				break;
 			case MessageUtil.REQ_MESSAGE_TYPE_IMAGE:
-				respContent = "您发送的是图片消息！请输入\"司机\"或\"乘客\"的文字消息";
+				respContent = "您发送的是图片消息！请输入\"发布\"";
 				break;
 			case MessageUtil.REQ_MESSAGE_TYPE_VOICE:
-				respContent = "您发送的是语音消息！请输入\"司机\"或\"乘客\"";
+				respContent = "您发送的是语音消息！请输入\"发布\"";
 				break;
 			case MessageUtil.REQ_MESSAGE_TYPE_VIDEO:
-				respContent = "您发送的是视频消息！请输入\"司机\"或\"乘客\"";
+				respContent = "您发送的是视频消息！请输入\"发布\"";
 				break;
 			case MessageUtil.REQ_MESSAGE_TYPE_SHORTVIDEO:
-				respContent = "您发送的是小视频消息！请输入\"司机\"或\"乘客\"";
+				respContent = "您发送的是小视频消息！请输入\"发布\"";
 				break;
 			case MessageUtil.REQ_MESSAGE_TYPE_LOCATION:
-				respContent = "您发送的是地理位置消息！请输入\"司机\"或\"乘客\"";
+				respContent = "您发送的是地理位置消息！请输入\"发布\"";
 				break;
 			case MessageUtil.REQ_MESSAGE_TYPE_LINK:
-				respContent = "您发送的是链接消息！请输入\"司机\"或\"乘客\"";
+				respContent = "您发送的是链接消息！请输入\"发布\"";
 				break;
 			case MessageUtil.REQ_MESSAGE_TYPE_EVENT:
 				// 事件类型
