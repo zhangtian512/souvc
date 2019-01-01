@@ -28,11 +28,11 @@
         <!-- 配置获取access_token所需参数appid和appsecret -->
         <init-param>
             <param-name>appid</param-name>
-            <param-value>wx0c521940064c1f5f</param-value>
+            <param-value>wx82db1a966cb99b90</param-value>
         </init-param>
         <init-param>
             <param-name>appsecret</param-name>
-            <param-value>0fdc248fd764ad1c963b72b312eb335d</param-value>
+            <param-value>caa56842a46b79befaa5bd600eff449c</param-value>
         </init-param>
         <load-on-startup>0</load-on-startup>
     </servlet>

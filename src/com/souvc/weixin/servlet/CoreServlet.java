@@ -28,9 +28,6 @@ public class CoreServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-    	/*System.out.println("enter doGet");
-    	String outPath = "D:\\out.log";
-		System.setOut(new PrintStream(new FileOutputStream(outPath, true)));*/
         // 微信加密签名
         String signature = request.getParameter("signature");
         // 时间戳
@@ -39,6 +36,11 @@ public class CoreServlet extends HttpServlet {
         String nonce = request.getParameter("nonce");
         // 随机字符串
         String echostr = request.getParameter("echostr");
+        
+        log.info(signature);
+        log.info(timestamp);
+        log.info(nonce);
+        log.info(echostr);
 
         PrintWriter out = response.getWriter();
         
@@ -46,6 +48,7 @@ public class CoreServlet extends HttpServlet {
         if (SignUtil.checkSignature(signature, timestamp, nonce)) {
         	log.info("Authentication success!");
         	log.info(echostr);
+        	out.print(echostr);
         }
         else {
         	log.error("Authentication failed!");
@@ -71,7 +74,7 @@ public class CoreServlet extends HttpServlet {
         	log.info("处理请求返回错误");
         	return;
         }
-        //log.info(respXml);
+        log.info(respXml);
         
         // 响应消息
         PrintWriter out = response.getWriter();

@@ -18,7 +18,7 @@ public class XMLNodeOpetation {
 			String rep = "<![CDATA["+temp+"]]>";
 			System.out.println(rep);
 			String res = XML_str.replace(rep, temp);
-			System.out.println(res);
+			//System.out.println(res);
 			return res;
 		} catch (JDOMException e) {
 			// TODO Auto-generated catch block
