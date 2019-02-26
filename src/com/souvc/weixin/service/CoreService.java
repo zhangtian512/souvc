@@ -69,7 +69,7 @@ public class CoreService {
             log.info("processRequest msgContent:"+msgContent);
             switch (msgType) {
 			case MessageUtil.REQ_MESSAGE_TYPE_TEXT:
-				
+				/*
 				if(msgContent.equals("发布")){
 					List<Article> ar_list = new ArrayList<Article>();
 					
@@ -89,12 +89,21 @@ public class CoreService {
 					respContent = "本公众号意在为西安高新区上班的广大公众提供一个平台，"
 							+ "大家可以在这个平台上分享自己的上下班行程，"
 							+ "可约短期顺风车，可约长期顺风车。\n"
-							+ "由于资金问题，无法开通微信小程序\n"
-							+ "请点击下面的链接进入主页\n"
-							+ "或直接复制下面链接至手机浏览器打开亦可\n"
-							+ "https://www.gaoxinsfc.com/e_sfc";
+							+ "由于资金有限，目前无法开通点击直接跳转至约车页面，"
+							+ "请您先点击菜单中的：\n"
+							+ "\"使用说明\"按钮\n"
+							+"获取使用攻略\n或直接在对话框输入\n"
+							+"\"发布\"\n"
+							+"来获取主页链接，然后用手机浏览器打开即可\n";
 				}
-				
+				*/
+				respContent = "本公众号意在为西安高新区上班的广大公众提供一个平台，"
+						+ "大家可以在这个平台上分享自己的上下班行程，"
+						+ "可约短期顺风车，可约长期顺风车。\n"
+						+ "由于资金问题，无法开通微信小程序\n"
+						+ "请点击使用说明按钮阅读使用说明\n"
+						+ "或直接复制下面链接至手机浏览器打开即可使用\n"
+						+ "www.gaoxinsfc.com/e_sfc";
 				break;
 			case MessageUtil.REQ_MESSAGE_TYPE_IMAGE:
 				respContent = "您发送的是图片消息！请输入\"发布\"";
@@ -124,13 +133,13 @@ public class CoreService {
 							+ "大家可以在这个平台上分享自己的上下班行程，"
 							+ "可约短期顺风车，可约长期顺风车。\n"
 							+ "由于资金问题，无法开通微信小程序\n"
-							+ "请点击下面链接进入主页\n"
-							+ "或直接复制下面链接至手机浏览器打开亦可\n"
-							+ "https://www.gaoxinsfc.com/e_sfc";
+							+ "请点击使用说明按钮阅读使用说明\n"
+							+ "或直接复制下面链接至手机浏览器打开即可使用\n"
+							+ "www.gaoxinsfc.com/e_sfc";
 					break;
 				case MessageUtil.EVENT_TYPE_UNSUBSCRIBE:
 					// TODO 取消订阅后用户不会再收到公众账号发送的消息，因此不需要回复
-					System.out.println("取消关注者的openid："+fromUserName);
+					log.info("取消关注者的openid："+fromUserName);
 					break;
 				case MessageUtil.EVENT_TYPE_SCAN:
 					// TODO 处理扫描带参数二维码事件
@@ -163,6 +172,7 @@ public class CoreService {
             	respXml = XMLNodeOpetation.DelCDATAinXML(respXml, "ArticleCount");
             }
             else if(respContent.equals("未知的消息类型")){
+            	log.error("未知的消息类型");
             	return "error";
             }
             else{
